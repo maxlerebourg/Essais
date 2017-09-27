@@ -1,0 +1,24 @@
+{% extends "MLFirstBundle::layout.html.twig" %}
+
+
+{% block ml_body %}
+
+    <h2>Ajouter une annonce</h2><hr>
+    <div class="card">
+        <div class="card-body">
+
+            {{ include("MLFirstBundle:Advert:form.html.twig") }}
+        </div>
+    </div>
+    <p>
+        Attention : cette annonce sera ajoutée directement
+        sur la page d'accueil après validation du formulaire.
+    </p>
+
+    <p>
+        <!--{#<a href="{{ path('ml_view', {'id': advert.id}) }}" class="btn btn-secondary">#}
+            Retour à l'annonce
+        </a>-->
+    </p>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+
+{% extends "MLFirstBundle::layout.html.twig" %}
+
+
+{% block ml_body %}
+
+    <h2>{{ advert.title }}</h2>
+    <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+
+    <div class="card">
+        <div class="card-body">
+            {% if advert.image is not null %}
+                <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}">
+            {% endif %}
+            <br>
+            {{ advert.content }}
+        </div>
+    </div>
+
+    <p>
+        <a href="{{ path('ml_home') }}" class="btn btn-secondary">
+            Retour à la liste
+        </a>
+        <a href="{{ path('ml_edit', {'id': advert.id}) }}" class="btn btn-secondary">
+            Modifier l'annonce
+        </a>
+        <a href="{{ path('ml_delete', {'id': advert.id}) }}" class="btn btn-danger">
+            Supprimer l'annonce
+        </a>
+    </p>
+
+{% endblock %}
