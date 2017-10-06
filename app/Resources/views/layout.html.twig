@@ -16,11 +16,16 @@
 
 <body>
 <div class="container">
-    <div id="header" class="jumbotron">
-        <h1>Alcool pas cher</h1>
-        <p>
-            Fait à l'aide de Symfony.
-        </p>
+    <div id="header" class="jumbotron"
+        style="background-image: url('https://static.lexpress.fr/medias_11169/w_2048,h_1146,c_crop,x_0,y_0/w_640,h_360,c_fill,g_north/v1475507535/various-bottles-of-us-and-international-spirits_5718617.jpg');
+            background-size: cover;
+        ">
+        <a href="{{ path('ml_home') }}">
+            <h1 style="color: white">Alcool pas cher</h1>
+            <p style="color: white">
+                Vous voulez de l'alcool pas cher, venez sur ce site, vous ne serez pas deçu.
+            </p>
+        </a>
     </div>
 
     <div class="row">
@@ -44,7 +49,7 @@
     <hr>
 
     <footer>
-        <p> © {{ 'now'|date('Y') }} </p>
+        <p> Fait à l'aide de Symfony © {{ 'now'|date('Y') }} </p>
     </footer>
 </div>
 
