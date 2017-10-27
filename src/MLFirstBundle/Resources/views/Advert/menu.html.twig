@@ -1,7 +1,7 @@
 <ul class="navbar-nav">
     {% for advert in listAdverts %}
         <li>
-            <a href="{{ path('ml_view', {'id': advert.id}) }}">
+            <a href="{{ path('ml_view', {'id': advert.id}) }}"  class="btn btn-light" style="width:100%;font-size: 13px">
                 {{ advert.title }}
             </a>
         </li>

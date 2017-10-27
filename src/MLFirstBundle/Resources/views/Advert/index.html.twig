@@ -6,23 +6,44 @@
 
 {% block ml_body %}
 
+    <div style="height:500px;width:100%;overflow:auto;">
+
     <h2>Petit listing des familles</h2>
     <hr>
 
     <ul class="navbar-nav">
         {% for advert in listAdverts %}
-            <li>
-                <a href="{{ path('ml_view', {'id': advert.id}) }}">
-                    <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" width="100" height="100"><br>
-                    {{ advert.title }}
+            <li onmouseover="this.style.background='lightgray';" onmouseout="this.style.background='';" style="margin-bottom:-25px">
+                <a href="{{ path('ml_view', {'id': advert.id}) }}" style="color:black;text-decoration: none" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col align-self-start">
+                                <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" width="100" height="100" style="margin:10px;"><br>
+                            </div>
+                            <div class="col align-self-center" style="margin-right:15%">
+                                <p style="font-size:13px">
+                                    <b style="font-size:17px">{{ advert.title }}</b> <br>
+                                    par {{ advert.author }}
+                                </p>
+                                <p>
+                                    <b style="color:darkorange;margin-top:10px; font-size:20px">{{ advert.price }}€</b>
+                                </p>
+                            </div>
+                            <div class="col align-self-end" style="margin-left:15%">
+                                <p style="font-size:12px">
+                                    {{ advert.date|date('d/m/Y') }}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
                 </a>
-                - {{ advert.price }}€ par {{ advert.author }},
-                le {{ advert.date|date('d/m/Y') }}
             </li>
             <hr>
         {% else %}
             <li>Pas (encore !) d'annonces</li>
         {% endfor %}
     </ul>
+    </div>
 
 {% endblock %}

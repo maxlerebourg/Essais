@@ -17,7 +17,12 @@ class AdvertController extends Controller
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('MLFirstBundle:Advert');
-        $listAdverts = $repository->findAll();
+        $listAdverts = $repository->findBy(
+            array(),                 // Pas de critère
+            array('date' => 'desc'), // On trie par date décroissante
+            null,                  // On sélectionne $limit annonces
+            0
+        );
 
         return $this->render('MLFirstBundle:Advert:index.html.twig', array(
             'listAdverts' => $listAdverts

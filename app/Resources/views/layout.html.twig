@@ -14,30 +14,48 @@
     {% endblock %}
 </head>
 
-<body>
-<div class="container">
-    <div id="header" class="jumbotron"
-        style="background-image: url('https://static.lexpress.fr/medias_11169/w_2048,h_1146,c_crop,x_0,y_0/w_640,h_360,c_fill,g_north/v1475507535/various-bottles-of-us-and-international-spirits_5718617.jpg');
-            background-size: cover;
-        ">
-        <a href="{{ path('ml_home') }}">
-            <h1 style="color: white">Alcool pas cher</h1>
-            <p style="color: white">
-                Vous voulez de l'alcool pas cher, venez sur ce site, vous ne serez pas deçu.
-            </p>
-        </a>
-    </div>
+<body> <!--style="background-image: url('http://s1.edi-static.fr/Img/BREVE/2016/5/305322/Publicite-marche-stabilise-L.jpg')"-->
+<div class="container" style="height:100%;background: white">
+    <a href="{{ path('ml_home') }}" style="text-decoration: none">
+        <div id="header" class="jumbotron"
+            style="background-image: url('https://static.lexpress.fr/medias_11169/w_2048,h_1146,c_crop,x_0,y_0/w_640,h_360,c_fill,g_north/v1475507535/various-bottles-of-us-and-international-spirits_5718617.jpg');
+                background-size: cover;
+            ">
 
+                <h1 style="color: white">Alcool pas cher</h1>
+                <p style="color: white">
+                    Vous voulez de l'alcool pas cher, venez sur ce site, vous ne serez pas deçu.
+                </p>
+        </div>
+    </a>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{ path('ml_home') }}" style="margin-left:100px;margin-right:200px;"><b>ACCUEIL</b></a>
+                <a class="nav-item nav-link" href="{{ path('ml_add') }}" style="margin-left:100px;margin-right:200px;">AJOUTER</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+    <ul class="navbar navbar-inverse">
+
+    </ul>
     <div class="row">
         <div id="menu" class="col-md-3">
-            <h3>Les annonces</h3>
-            <ul class="navbar-nav">
-                <li><a href="{{ path('ml_home') }}">Accueil</a></li>
-                <li><a href="{{ path('ml_add') }}">Ajouter une annonce</a></li>
-            </ul>
-
-            <h4>Dernières annonces</h4>
-            {{ render(controller("MLFirstBundle:Advert:menu", {'limit': 3})) }}
+            <h4><br>Dernières annonces</h4>
+            {{ render(controller("MLFirstBundle:Advert:menu", {'limit': 5})) }}
         </div>
 
         <div id="content" class="col-md-9">
@@ -55,7 +73,6 @@
 
 {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
