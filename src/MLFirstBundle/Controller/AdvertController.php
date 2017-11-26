@@ -4,8 +4,8 @@
 
 namespace MLFirstBundle\Controller;
 
-use MLFirstBundle\Entity\Advert;
-use MLFirstBundle\Form\AdvertType;
+use ApiBundle\Entity\Advert;
+use ApiBundle\Form\AdvertType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,7 +16,7 @@ class AdvertController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('MLFirstBundle:Advert');
+            ->getRepository('ApiBundle:Advert');
         $listAdverts = $repository->findBy(
             array(),                 // Pas de critère
             array('date' => 'desc'), // On trie par date décroissante
@@ -33,7 +33,7 @@ class AdvertController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('MLFirstBundle:Advert')
+            ->getRepository('ApiBundle:Advert')
         ;
         $advert = $repository->find($id);
         if (null === $advert) {
@@ -68,11 +68,7 @@ class AdvertController extends Controller
 
     public function editAction($id, Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('MLFirstBundle:Advert')
-        ;
-
+        $repository = $this->getDoctrine()->getManager()->getRepository('ApiBundle:Advert');
         $advert = $repository->find($id);
 
         if (null === $advert) {
@@ -102,10 +98,13 @@ class AdvertController extends Controller
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $advert = $em->getRepository('MLFirstBundle:Advert')->find($id);
+        $advert = $em->getRepository('ApiBundle:Advert')->find($id);
 
         if (null === $advert) {
             throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
+        foreach ($advert->getImage() as $image) {
+            $em->remove($image);
         }
         $em->remove($advert);
         $em->flush();
@@ -117,7 +116,7 @@ class AdvertController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('MLFirstBundle:Advert')
+            ->getRepository('ApiBundle:Advert')
         ;
         $listAdverts = $repository->findBy(
             array(),                 // Pas de critère

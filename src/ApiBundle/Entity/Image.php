@@ -1,15 +1,37 @@
 <?php
 
-namespace MLFirstBundle\Entity;
+namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="ml_image")
- * @ORM\Entity(repositoryClass="MLFirstBundle\Entity\ImageRepository")
+ * @ORM\Entity(repositoryClass="ApiBundle\Entity\ImageRepository")
  */
 class Image
 {
+    /**
+     * @ORM\ManyToMany(targetEntity="ApiBundle\Entity\Advert")
+     */
+    private $advert;
+
+    /**
+     * @return mixed
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
+    }
+
+    /**
+     * @param mixed $advert
+     */
+    public function setAdvert($advert)
+    {
+        $this->advert = $advert;
+    }
+
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -26,7 +48,6 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
-
 
     /**
      * Get id
@@ -84,5 +105,36 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->advert = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add advert
+     *
+     * @param \ApiBundle\Entity\Advert $advert
+     *
+     * @return Image
+     */
+    public function addAdvert(\ApiBundle\Entity\Advert $advert)
+    {
+        $this->advert[] = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Remove advert
+     *
+     * @param \ApiBundle\Entity\Advert $advert
+     */
+    public function removeAdvert(\ApiBundle\Entity\Advert $advert)
+    {
+        $this->advert->removeElement($advert);
     }
 }

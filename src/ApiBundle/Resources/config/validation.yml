@@ -1,0 +1,17 @@
+ApiBundle\Entity\Advert:
+    properties:
+        title:
+            - NotBlank: ~
+            - Type: string
+        author:
+            - NotBlank: ~
+            - Type: string
+
+AppBundle\Entity\Image:
+    properties:
+        url:
+            - NotNull: ~
+            - Type: string
+        alt:
+            - NotNull: ~
+            - Type: string

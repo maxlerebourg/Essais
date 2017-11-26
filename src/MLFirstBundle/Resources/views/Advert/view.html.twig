@@ -4,18 +4,39 @@
 
 {% block ml_body %}
 
-    <h2>{{ advert.title }} - {{ advert.price }}€</h2>
+    <h2>{{ advert.title }}</h2>
     <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
 
     <div class="card">
         <div class="card-body">
-            {% if advert.image is not null %}
-                <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" height="400" width="400" style="margin:10px">
-            {% endif %}
+            <div class=container">
+                <div class="raw">
+                {% for image in advert.image %}
+                    <img class="image" id="image{{ loop.index }}" alt="{{ image.alt }}" src="{{ image.url }}" style="max-width: 100%;max-height: 100%; {% if not loop.first %}display:none;{% endif %}" onclick="changerPhoto({{ loop.index }});">
+                {% endfor %}
+                </div>
+            </div>
             <br>
-            {{ advert.content }}
         </div>
     </div>
+    <script>
+        var tab = document.getElementsByClassName('image').length;
+        function changerPhoto(index){
+            var actuel = document.getElementById('image'+index);
+            actuel.style.display='none';
+            var suivant;
+            if (index == tab){
+                suivant = document.getElementById('image' + 1);
+                suivant.style.display = 'inline';
+            }
+            else
+            {
+                suivant = document.getElementById('image' + (index + 1));
+                suivant.style.display = 'inline';
+            }
+        }
+        
+    </script>
 
     <p>
         <a href="{{ path('ml_home') }}" class="btn btn-secondary">

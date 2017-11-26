@@ -1,0 +1,22 @@
+ApiBundle\Entity\Advert:
+    attributes:
+        id:
+            groups: ['place', 'price']
+        title:
+            groups: ['place', 'price']
+        author:
+            groups: ['place', 'price']
+        image:
+            groups: ['place']
+
+
+ApiBundle\Entity\Image:
+    attributes:
+        id:
+            groups: ['place', 'price']
+        url:
+            groups: ['place', 'price']
+        alt:
+            groups: ['place', 'price']
+        advert:
+            groups: ['price']

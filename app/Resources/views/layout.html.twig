@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}Alcool pas cher{% endblock %}</title>
+    <title>{% block title %}Mêmes à volonté{% endblock %}</title>
 
     {% block stylesheets %}
         {# On charge le CSS de bootstrap depuis le site directement #}
@@ -14,17 +14,17 @@
     {% endblock %}
 </head>
 
-<body> <!--style="background-image: url('http://s1.edi-static.fr/Img/BREVE/2016/5/305322/Publicite-marche-stabilise-L.jpg')"-->
-<div class="container" style="height:100%;background: white">
+<div class="container">
+
     <a href="{{ path('ml_home') }}" style="text-decoration: none">
         <div id="header" class="jumbotron"
             style="background-image: url('https://static.lexpress.fr/medias_11169/w_2048,h_1146,c_crop,x_0,y_0/w_640,h_360,c_fill,g_north/v1475507535/various-bottles-of-us-and-international-spirits_5718617.jpg');
                 background-size: cover;
             ">
 
-                <h1 style="color: white">Alcool pas cher</h1>
+                <h1 style="color: white">Mêmes à volonté</h1>
                 <p style="color: white">
-                    Vous voulez de l'alcool pas cher, venez sur ce site, vous ne serez pas deçu.
+                    Vous voulez des bons mêmes, venez, vous ne serez pas deçu.
                 </p>
         </div>
     </a>
@@ -37,8 +37,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{{ path('ml_home') }}" style="margin-left:100px;margin-right:200px;"><b>ACCUEIL</b></a>
-                <a class="nav-item nav-link" href="{{ path('ml_add') }}" style="margin-left:100px;margin-right:200px;">AJOUTER</a>
+                <a class="nav-item nav-link active" href="{{ path('ml_home') }}" style="margin-left:30px;"><b>ACCUEIL</b></a>
+                <a class="nav-item nav-link" href="{{ path('ml_add') }}" style="margin-left:30px;">AJOUTER</a>
+                {% if app.user %}
+                   <a class="nav-item nav-link" href="{{ path('fos_user_profile_show') }}" style="margin-left:30px;">PROFILE</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{ path('fos_user_security_login') }}" style="margin-left:30px;">S'IDENTIFIER</a>
+                    <a class="nav-item nav-link" href="{{ path('fos_user_registration_register') }}" style="margin-left:30px;">S'INSCRIRE</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -59,6 +65,8 @@
         </div>
 
         <div id="content" class="col-md-9">
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
             {% block body %}
             {% endblock %}
         </div>
@@ -78,5 +86,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 {% endblock %}
 
-</body>
 </html>
