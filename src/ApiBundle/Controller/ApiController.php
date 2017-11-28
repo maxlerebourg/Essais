@@ -4,17 +4,20 @@ namespace ApiBundle\Controller;
 
 use ApiBundle\Entity\Image;
 use ApiBundle\Form\AdvertType;
+use ApiBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Symfony\Component\Serializer\SerializerInterface;
+
 use ApiBundle\Entity\Advert;
 
 class ApiController extends Controller
 {
     /**
-     * @Rest\View(serializerGroups={"price"})
+     * @Rest\View()
      * @Rest\Get("/adverts")
      */
     public function getAdvertsAction(Request $request)
@@ -74,17 +77,39 @@ class ApiController extends Controller
         return $image;
     }
     /**
+     * @Rest\View()
+     * @Rest\Get("/users")
+     */
+    public function getUsersAction(Request $request)
+    {
+        $users = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('ApiBundle:User')
+            ->findAll();
+        /* @var $user User[] */
+
+        return $users;
+    }
+    /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
      * @Rest\Post("/adverts")
      */
     public function postAdvertsAction(Request $request)
     {
         $advert = new Advert();
-        $form = $this->createForm(AdvertType::class, $advert);
+
+        $form = $this->createForm(PostType::class, $advert);
 
         $form->submit($request->request->all());
+        $user = $this->get('doctrine.orm.entity_manager')
+        ->getRepository('ApiBundle:User')
+        ->find($request->get('user_id'));
+        if ($user != null)
+        {
+            $advert->setUser($user);
+        }
         if ($form->isValid()) {
             $em = $this->get('doctrine.orm.entity_manager');
+
             $em->persist($advert);
             $em->flush();
             return $advert;

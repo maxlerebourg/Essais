@@ -5,7 +5,6 @@ profile:
         firstname: Prénom
         lastname: Nom
         phone: Tél.
-        email: E-mail
         password_first: Mot de passe
         password_second: Mot de passe (validation)
 
@@ -13,6 +12,10 @@ profile:
 register:
     fields:
         firstname: Nom
+        gender: Civilité
+        firstname: Prénom
+        lastname: Nom
+        phone: Tél.
 
 # Resetting account
 resetting:

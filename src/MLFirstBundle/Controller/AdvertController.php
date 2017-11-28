@@ -48,12 +48,14 @@ class AdvertController extends Controller
     {
         $advert = new Advert();
 
+
         $form = $this->get('form.factory')->create(AdvertType::class, $advert);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                $advert->setUser($this->getUser());
                 $em->persist($advert);
                 $em->flush();
 
@@ -99,16 +101,20 @@ class AdvertController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $advert = $em->getRepository('ApiBundle:Advert')->find($id);
-
-        if (null === $advert) {
-            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        if ($advert->getUser()->getId() == $this->getUser()->getId()) {
+            if (null === $advert) {
+                throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
+            }
+            foreach ($advert->getImage() as $image) {
+                $em->remove($image);
+            }
+            $em->remove($advert);
+            $em->flush();
+            return $this->render('MLFirstBundle:Advert:delete.html.twig');
         }
-        foreach ($advert->getImage() as $image) {
-            $em->remove($image);
-        }
-        $em->remove($advert);
-        $em->flush();
-        return $this->render('MLFirstBundle:Advert:delete.html.twig');
+        return $this->render('MLFirstBundle:Advert:view.html.twig', array(
+            'advert' => $advert
+        ));
     }
 
 

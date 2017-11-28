@@ -3,9 +3,6 @@ ApiBundle\Entity\Advert:
         title:
             - NotBlank: ~
             - Type: string
-        author:
-            - NotBlank: ~
-            - Type: string
 
 AppBundle\Entity\Image:
     properties:

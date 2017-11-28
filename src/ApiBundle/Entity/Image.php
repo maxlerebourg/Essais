@@ -3,10 +3,14 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
+ * @ExclusionPolicy("all")
  * @ORM\Table(name="ml_image")
- * @ORM\Entity(repositoryClass="ApiBundle\Entity\ImageRepository")
+ * @ORM\Entity(repositoryClass="ApiBundle\Repository\ImageRepository")
+ *
  */
 class Image
 {
@@ -36,15 +40,18 @@ class Image
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @expose
      */
     private $id;
 
     /**
      * @ORM\Column(name="url", type="string", length=255)
+     * @expose
      */
     private $url;
 
     /**
+     * @expose
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;

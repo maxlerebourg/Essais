@@ -3,10 +3,13 @@
 namespace ApiBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Advert
+ * @ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="ml_advert")
  * @ORM\Entity(repositoryClass="ApiBundle\Repository\AdvertRepository")
@@ -14,14 +17,20 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert
 {
     /**
+     * @expose
      * @var arrayCollection
      * @ORM\ManyToMany(targetEntity="ApiBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
+    /**
+     * @var arrayCollection
+     * @ORM\ManyToOne(targetEntity="ApiBundle\Entity\User", cascade={"persist"})
+     */
+    private $user;
 
     /**
      * @var int
-     *
+     * @expose
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -30,22 +39,18 @@ class Advert
 
     /**
      * @var \DateTime
-     *
+     * @expose
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var string
+     * @expose
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
-    /**
-     * @var string
-     * @ORM\Column(name="author", type="string", length=255)
-     */
-    private $author;
 
     /**
      * Get id
@@ -86,25 +91,6 @@ class Advert
         return $this->title;
     }
 
-    /**
-     * Set author
-     * @param string $author
-     * @return Advert
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-        return $this;
-    }
-
-    /**
-     * Get author
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
 
     /**
      * Advert constructor.
@@ -113,6 +99,7 @@ class Advert
     {
         $this->date = new \Datetime();
         $this->image = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     /**
@@ -157,5 +144,29 @@ class Advert
         $this->date = $date;
 
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param ArrayCollection $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+    public function getUserId()
+    {
+        return null;
+    }
+    public function setUserId($user_id)
+    {
+        return null;
     }
 }

@@ -1,7 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <a href="{{ path('fos_user_security_logout') }}">Déconnection</a>
+    <p> Pseudo : {{ user.username }}</p>
+    <p> Email : {{ user.email }}</p>
+    <p> Sexe : {{ user.gender }}</p>
+    <p> Nom complet :  {{ user.firstname }} {{ user.lastname }}</p>
+    <p> Tel : {{ user.phone }}</p>
+    <a class="btn btn-secondary" href="{{ path('fos_user_profile_edit') }}">Modifier</a>
+    <a class="btn btn-secondary" href="{{ path('fos_user_security_logout') }}">Déconnection</a>
 </div>

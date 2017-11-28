@@ -9,6 +9,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
 framework:
     #esi: ~
@@ -18,12 +19,10 @@ framework:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
     form: ~
-    csrf_protection: ~
+    csrf_protection: false
     validation: { enable_annotations: true }
     serializer:
-        enabled: true
-        mapping:
-            paths: ['%kernel.project_dir%/src/ApiBundle/Resources/config/serializer.yml']
+        enable_annotations: true
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -76,6 +75,8 @@ swiftmailer:
     spool: { type: memory }
 
 fos_rest:
+    serializer:
+        serialize_null:  true
     routing_loader:
         include_format: false
     view:
@@ -94,3 +95,9 @@ fos_user:
     from_email:
         address: mail@domain.tld
         sender_name: user
+    registration:
+        form:
+            type: ApiBundle\Form\UserType
+    profile:
+        form:
+            type: ApiBundle\Form\UserType

@@ -22,7 +22,7 @@
                              <img src="{{ image.url }}" alt="{{ image.alt }}" width="200px" height="200px" style="margin:10px;">
                          {% endif %}
                     {% endfor %}
-                    <figcaption style="width:200px">{{ advert.title }}<small> par {{ advert.author }} </br>le {{ advert.date|date('d/m/Y') }}</small>
+                    <figcaption style="width:200px">{{ advert.title }}<small> par {{ advert.user.username }} </br>le {{ advert.date|date('d/m/Y') }}</small>
                     </figcaption>
                 </a>
             </figure>
