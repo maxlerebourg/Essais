@@ -34,20 +34,16 @@ class AdvertController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('ApiBundle:Advert')
-        ;
+            ->getRepository('ApiBundle:Advert');
         $advert = $repository->find($id);
         if (null === $advert) {
-            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
         }
         return $this->render('MLFirstBundle:Advert:view.html.twig', array(
             'advert' => $advert
         ));
     }
 
-    /**
-     * @param Request $request
-     */
     public function addAction(Request $request)
     {
         $advert = new Advert();
@@ -59,9 +55,11 @@ class AdvertController extends Controller
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                if ($this->getUser()){ $advert->setUser($this->getUser());}
-                else  {
-                    $advert->setUser($usr);}
+                if ($this->getUser()) {
+                    $advert->setUser($this->getUser());
+                } else {
+                    $advert->setUser($usr);
+                }
                 $em->persist($advert);
                 $em->flush();
 
@@ -80,7 +78,7 @@ class AdvertController extends Controller
         $advert = $repository->find($id);
 
         if (null === $advert) {
-            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
         }
         $form = $this->get('form.factory')->create(AdvertType::class, $advert);
 
@@ -107,20 +105,15 @@ class AdvertController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $advert = $em->getRepository('ApiBundle:Advert')->find($id);
-        if ($advert->getUser()->getId() == $this->getUser()->getId()) {
-            if (null === $advert) {
-                throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
-            }
-            foreach ($advert->getImage() as $image) {
-                $em->remove($image);
-            }
-            $em->remove($advert);
-            $em->flush();
-            return $this->render('MLFirstBundle:Advert:delete.html.twig');
+        if (null === $advert) {
+            throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
         }
-        return $this->render('MLFirstBundle:Advert:view.html.twig', array(
-            'advert' => $advert
-        ));
+        foreach ($advert->getImage() as $image) {
+            $em->remove($image);
+        }
+        $em->remove($advert);
+        $em->flush();
+        return $this->render('MLFirstBundle:Advert:delete.html.twig');
     }
 
 
@@ -128,8 +121,7 @@ class AdvertController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('ApiBundle:Advert')
-        ;
+            ->getRepository('ApiBundle:Advert');
         $listAdverts = $repository->findBy(
             array(),                 // Pas de critère
             array('date' => 'desc'), // On trie par date décroissante
