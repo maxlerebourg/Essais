@@ -5,6 +5,7 @@
 namespace MLFirstBundle\Controller;
 
 use ApiBundle\Entity\Advert;
+use ApiBundle\Entity\User;
 use ApiBundle\Form\AdvertType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,18 +45,23 @@ class AdvertController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     */
     public function addAction(Request $request)
     {
         $advert = new Advert();
 
 
         $form = $this->get('form.factory')->create(AdvertType::class, $advert);
-
+        $usr = $this->getDoctrine()->getManager()->getRepository('ApiBundle:User')->find(1);
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                $advert->setUser($this->getUser());
+                if ($this->getUser()){ $advert->setUser($this->getUser());}
+                else  {
+                    $advert->setUser($usr);}
                 $em->persist($advert);
                 $em->flush();
 

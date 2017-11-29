@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\Serializer\SerializerInterface;
 
 use ApiBundle\Entity\Advert;
 
@@ -22,12 +21,9 @@ class ApiController extends Controller
      */
     public function getAdvertsAction(Request $request)
     {
-        $adverts = $this->get('doctrine.orm.entity_manager')
+        return $this->get('doctrine.orm.entity_manager')
             ->getRepository('ApiBundle:Advert')
             ->findAll();
-        /* @var $adverts Advert[] */
-
-        return $adverts;
     }
     /**
      * @Rest\View()
@@ -52,12 +48,10 @@ class ApiController extends Controller
     */
     public function getImagesAction(Request $request)
     {
-        $images = $this->get('doctrine.orm.entity_manager')
+        return $this->get('doctrine.orm.entity_manager')
             ->getRepository('ApiBundle:Image')
             ->findAll();
-        /* @var $image Image[] */
 
-        return $images;
     }
     /**
      * @Rest\View()
@@ -82,12 +76,9 @@ class ApiController extends Controller
      */
     public function getUsersAction(Request $request)
     {
-        $users = $this->get('doctrine.orm.entity_manager')
+        return $this->get('doctrine.orm.entity_manager')
             ->getRepository('ApiBundle:User')
             ->findAll();
-        /* @var $user User[] */
-
-        return $users;
     }
     /**
      * @Rest\View(statusCode=Response::HTTP_CREATED)
@@ -165,9 +156,7 @@ class ApiController extends Controller
         if (empty($advert)) {
             return new JsonResponse(['message' => 'Advert not found'], Response::HTTP_NOT_FOUND);
         }
-
         $form = $this->createForm(AdvertType::class, $advert);
-
         $form->submit($request->request->all(), $clearMissing);
 
         if ($form->isValid()) {
