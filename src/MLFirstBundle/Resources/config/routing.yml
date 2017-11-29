@@ -1,0 +1,30 @@
+ml_home:
+    path:      /
+    defaults:
+        _controller:     MLFirstBundle:Advert:index
+
+ml_view:
+    path:      /advert/{id}
+    defaults:
+        _controller:     MLFirstBundle:Advert:view
+    requirements:
+         page:     \d*
+
+ml_add:
+    path:      /add
+    defaults:
+        _controller:     MLFirstBundle:Advert:add
+
+ml_edit:
+    path:      /edit/{id}
+    defaults:
+        _controller:     MLFirstBundle:Advert:edit
+    requirements:
+        id:     \d+
+
+ml_delete:
+    path:      /delete/{id}
+    defaults:
+        _controller:     MLFirstBundle:Advert:delete
+    requirements:
+        id:     \d+
