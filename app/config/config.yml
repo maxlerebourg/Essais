@@ -101,3 +101,12 @@ fos_user:
     profile:
         form:
             type: ApiBundle\Form\UserType
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['POST', 'PUT', 'GET', 'DELETE','PATCH']
+        max_age: 3600
+        hosts: []
+        origin_regex: false

@@ -32,10 +32,7 @@ class AdvertController extends Controller
 
     public function viewAction($id)
     {
-        $repository = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ApiBundle:Advert');
-        $advert = $repository->find($id);
+        $advert = $this->getDoctrine()->getRepository('ApiBundle:Advert')->find($id);
         if (null === $advert) {
             throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
         }
@@ -47,7 +44,6 @@ class AdvertController extends Controller
     public function addAction(Request $request)
     {
         $advert = new Advert();
-
 
         $form = $this->get('form.factory')->create(AdvertType::class, $advert);
         $usr = $this->getDoctrine()->getManager()->getRepository('ApiBundle:User')->find(1);
@@ -74,8 +70,8 @@ class AdvertController extends Controller
 
     public function editAction($id, Request $request)
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('ApiBundle:Advert');
-        $advert = $repository->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $advert = $em->getRepository('ApiBundle:Advert')->find($id);
 
         if (null === $advert) {
             throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
@@ -87,7 +83,6 @@ class AdvertController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($advert);
                 $em->flush();
 
