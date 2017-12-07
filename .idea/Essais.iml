@@ -26,11 +26,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jms/parser-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jms/serializer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jms/serializer-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nelmio/cors-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpcollection/phpcollection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
@@ -55,7 +52,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/swiftmailer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/white-october/pagerfanta-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/willdurand/jsonp-callback-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/willdurand/negotiation" />
     </content>
@@ -85,11 +81,8 @@
           <root url="file://$MODULE_DIR$/vendor/jms/parser-lib" />
           <root url="file://$MODULE_DIR$/vendor/jms/serializer" />
           <root url="file://$MODULE_DIR$/vendor/jms/serializer-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
-          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/nelmio/cors-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpcollection/phpcollection" />
           <root url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
@@ -114,7 +107,6 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/swiftmailer-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/symfony" />
           <root url="file://$MODULE_DIR$/vendor/twig/twig" />
-          <root url="file://$MODULE_DIR$/vendor/white-october/pagerfanta-bundle" />
           <root url="file://$MODULE_DIR$/vendor/willdurand/jsonp-callback-validator" />
           <root url="file://$MODULE_DIR$/vendor/willdurand/negotiation" />
         </CLASSES>
@@ -140,11 +132,8 @@
           <root url="file://$MODULE_DIR$/vendor/jms/parser-lib" />
           <root url="file://$MODULE_DIR$/vendor/jms/serializer" />
           <root url="file://$MODULE_DIR$/vendor/jms/serializer-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
-          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
           <root url="file://$MODULE_DIR$/vendor/nelmio/cors-bundle" />
-          <root url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
           <root url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
           <root url="file://$MODULE_DIR$/vendor/phpcollection/phpcollection" />
           <root url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
@@ -169,7 +158,6 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/swiftmailer-bundle" />
           <root url="file://$MODULE_DIR$/vendor/symfony/symfony" />
           <root url="file://$MODULE_DIR$/vendor/twig/twig" />
-          <root url="file://$MODULE_DIR$/vendor/white-october/pagerfanta-bundle" />
           <root url="file://$MODULE_DIR$/vendor/willdurand/jsonp-callback-validator" />
           <root url="file://$MODULE_DIR$/vendor/willdurand/negotiation" />
         </SOURCES>
@@ -180,10 +168,12 @@
         <CLASSES>
           <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
           <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/composer/cdf31a96/symfony-symfony-8e2b473/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/vendor/twig/twig/test/Twig/Tests/Loader/Fixtures/phar/phar-sample.phar/" />
           <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
+          <root url="phar://$MODULE_DIR$/vendor/composer/cdf31a96/symfony-symfony-8e2b473/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
